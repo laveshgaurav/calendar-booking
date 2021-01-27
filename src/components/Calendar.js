@@ -25,56 +25,60 @@ class Calendar extends React.Component {
   };
 
   async componentDidMount() {
-    const resp = await axios.post(
-      "https://cors-anywhere.herokuapp.com/http:/quinncareapi-dev.us-east-2.elasticbeanstalk.com/graphhttp://quinncareapi-dev.us-east-2.elasticbeanstalk.com/graph",
-      {
-        requestobjects: [
-          {
-            posts: {
-              operationtype: "read",
-              id: {
-                return: true,
-              },
-              userid: {
-                searchvalues: ["41329663-5834-11eb-8e6e-3ca82abc3dd4"],
-                return: true,
-              },
-              iscalendarentry: {
-                searchvalues: ["true"],
-                return: true,
-              },
-              images: {
-                return: true,
-              },
-              rating: {
-                return: true,
-              },
-              text: {
-                return: true,
-              },
-              privacy: {
-                searchvalues: [18],
-                return: true,
-              },
-              typeofday: {
-                return: true,
-              },
+    try {
+      const resp = await axios.post(
+        "https://cors-anywhere.herokuapp.com/http:/quinncareapi-dev.us-east-2.elasticbeanstalk.com/graphhttp://quinncareapi-dev.us-east-2.elasticbeanstalk.com/graph",
+        {
+          requestobjects: [
+            {
+              posts: {
+                operationtype: "read",
+                id: {
+                  return: true,
+                },
+                userid: {
+                  searchvalues: ["41329663-5834-11eb-8e6e-3ca82abc3dd4"],
+                  return: true,
+                },
+                iscalendarentry: {
+                  searchvalues: ["true"],
+                  return: true,
+                },
+                images: {
+                  return: true,
+                },
+                rating: {
+                  return: true,
+                },
+                text: {
+                  return: true,
+                },
+                privacy: {
+                  searchvalues: [18],
+                  return: true,
+                },
+                typeofday: {
+                  return: true,
+                },
 
-              calendardatetime: {
-                return: true,
-                sort: "descending",
+                calendardatetime: {
+                  return: true,
+                  sort: "descending",
+                },
+                maxitemcount: "20",
+                continuationtoken: null,
               },
-              maxitemcount: "20",
-              continuationtoken: null,
             },
-          },
-        ],
-      }
-    );
-    // console.table(resp.data.responseobjects[0].posts);
-    this.setState({
-      data: resp.data.responseobjects[0].posts,
-    });
+          ],
+        }
+      );
+      // console.table(resp.data.responseobjects[0].posts);
+      this.setState({
+        data: resp.data.responseobjects[0].posts,
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
   }
 
   renderHeader() {
