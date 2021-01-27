@@ -26,7 +26,7 @@ class Calendar extends React.Component {
 
   async componentDidMount() {
     const resp = await axios.post(
-      "http://quinncareapi-dev.us-east-2.elasticbeanstalk.com/graph",
+      "https://cors-anywhere.herokuapp.com/http:/quinncareapi-dev.us-east-2.elasticbeanstalk.com/graphhttp://quinncareapi-dev.us-east-2.elasticbeanstalk.com/graph",
       {
         requestobjects: [
           {
@@ -71,7 +71,7 @@ class Calendar extends React.Component {
         ],
       }
     );
-    console.table(resp.data.responseobjects[0].posts);
+    // console.table(resp.data.responseobjects[0].posts);
     this.setState({
       data: resp.data.responseobjects[0].posts,
     });
