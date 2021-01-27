@@ -26,7 +26,7 @@ class Calendar extends React.Component {
 
   async componentDidMount() {
     const resp = await axios.post(
-      "http://quinncareapi-dev.us-east-2.elasticbeanstalk.com/graph",
+      "https://quinncareapi-dev.us-east-2.elasticbeanstalk.com/graph",
       {
         requestobjects: [
           {
